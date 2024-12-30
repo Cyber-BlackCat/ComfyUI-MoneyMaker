@@ -161,7 +161,7 @@ class LoadarandomImagefromdir:
 
     FUNCTION = "load_random_image"
 
-    CATEGORY = "Auto Caption"
+    CATEGORY = "Yuan😺"
 
     def load_random_image(self, folder, image_load_count, seed):
         if not os.path.isdir(folder):
