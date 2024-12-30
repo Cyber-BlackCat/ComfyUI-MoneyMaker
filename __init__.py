@@ -6,8 +6,9 @@ from .yuan.Yuan import ImageJudgment, imageMinusMask, blackandwhite, PSTransfer,
 # NOTE: names should be globally unique,一行不需要逗号，多行需要逗号
 # 冒号后为函数名即'值' key is in the left of ":", and the value is the function name in the right of the ":".
 NODE_CLASS_MAPPINGS = {
-    "Yuan": Yuan_node,
+    # "Yuan": Yuan_node,
     "Black and white": blackandwhite,
+    "Light or Dark": lightdarkjudgment,
     "PhotoShop Transfer": PSTransfer,
     "Image Judgment": ImageJudgment,
     "ImageMinusMask": imageMinusMask,
@@ -18,6 +19,7 @@ NODE_CLASS_MAPPINGS = {
 NODE_DISPLAY_NAME_MAPPINGS = {
     "Yuan": "Yuan fake Node",
     "Black and white": "Black & White Converter",
+    "Light or Dark": "Light or Dark",
     "PhotoShop Transfer": "PS Transfer",
     "Image Judgment": "Image Judgment",
     "ImageMinusMask": "Image Minus Mask",
