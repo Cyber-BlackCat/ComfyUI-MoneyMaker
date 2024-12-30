@@ -1,17 +1,19 @@
 import cv2
+import comfy.utils
+import folder_paths
+import logging
+import model_management
 import numpy as np
+import os
+import random
+import struct
 import torch
 import torchvision.transforms as transforms
-import folder_paths
-import os
 import types
 import torch.nn.functional as F
-import model_management
-import logging
-import struct
-import comfy.utils
 import time
 import scipy.ndimage
+import re
 
 
 from PIL import Image, ImageOps
@@ -55,7 +57,7 @@ class Yuan_node:
     """
     def __init__(self):
         pass
-    # 初始化-不用管init
+    # init is init
     
     @classmethod
     def INPUT_TYPES(s):
@@ -138,7 +140,89 @@ class Yuan_node:
 # WEB_DIRECTORY = "./somejs"
 
 
-class YuanBW:
+class LoadarandomImagefromdir:
+    @classmethod
+    def INPUT_TYPES(s):
+        return {
+            "required": {
+                "folder": ("STRING", {"default": ""}),
+                "seed": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff, "tooltip": "The random seed used for creating the noise."}),
+
+            },
+            "optional": {
+                "image_load_count": ("INT", {"default": 1, "min": 1, "step": 1}),
+            }
+        }
+
+    RETURN_TYPES = ("IMAGE", "MASK", "STRING",)
+    RETURN_NAMES = ("image", "mask", "image_path",)
+
+    OUTPUT_IS_LIST = (True, True, True)
+
+    FUNCTION = "load_random_image"
+
+    CATEGORY = "Auto Caption"
+
+    def load_random_image(self, folder, image_load_count, seed):
+        if not os.path.isdir(folder):
+            raise FileNotFoundError(f"Folder '{folder}' cannot be found.")
+            
+        dir_files = os.listdir(folder)
+        if len(dir_files) == 0:
+            raise FileNotFoundError(f"No files in directory '{folder}'.")
+        
+        # Filter files by valid image extensions
+        valid_extensions = ['.jpg', '.jpeg', '.png', '.webp']
+        dir_files = [f for f in dir_files if any(f.lower().endswith(ext) for ext in valid_extensions)]
+        
+        # Sort files based on numeric value extracted from filename
+        def extract_number(file_name):
+            match = re.search(r'(\d+)', file_name)
+            return int(match.group(0)) if match else float('inf')  # Use 'inf' if no number is found to push such files at the end
+        
+        dir_files = sorted(dir_files, key=extract_number)
+        
+        # Convert to full file paths
+        dir_files = [os.path.join(folder, x) for x in dir_files]
+        
+        images = []
+        masks = []
+        image_path_list = []
+
+        # Choose a random subset of images or just one random image
+        if image_load_count > 0 and image_load_count < len(dir_files):
+            # Using random.sample to select without replacement
+            selected_files = random.sample(dir_files, image_load_count)
+        elif image_load_count == 1:
+            # Using random.choice to select one image randomly
+            selected_files = [random.choice(dir_files)]
+        else:
+            selected_files = dir_files
+        
+        for image_path in selected_files:
+            try:
+                with Image.open(image_path) as i:
+                    i = ImageOps.exif_transpose(i)  # Handle EXIF orientation
+                    image = i.convert("RGB")
+                    image = np.array(image).astype(np.float32) / 255.0
+                    image = torch.from_numpy(image)[None,]
+                    
+                    if 'A' in i.getbands():  # Check for alpha channel
+                        mask = np.array(i.getchannel('A')).astype(np.float32) / 255.0
+                        mask = 1. - torch.from_numpy(mask)  # Invert the alpha mask
+                    else:
+                        mask = torch.zeros((64, 64), dtype=torch.float32, device="cuda")
+                    
+                    images.append(image)
+                    masks.append(mask)
+                    image_path_list.append(image_path)
+            except Exception as e:
+                print(f"Failed to load image {image_path}: {e}")
+                continue
+        
+        return (images, masks, image_path_list, seed)
+
+class blackandwhite:
     @classmethod
     def INPUT_TYPES(cls):
         return {
@@ -185,7 +269,7 @@ class YuanBW:
 
 
 
-class YuanTransfer:
+class PSTransfer:
     @classmethod
     def INPUT_TYPES(s):
         return {
@@ -487,7 +571,6 @@ class imageMinusMask:
 
         
        
-
         return image_rgb,
 
 
@@ -498,18 +581,20 @@ class imageMinusMask:
 # 冒号后为函数名
 NODE_CLASS_MAPPINGS = {
     "Yuan": Yuan_node,
-    "YuanBW": YuanBW,
-    "Yuan Transfer": YuanTransfer,
+    "Black and white": blackandwhite,
+    "PhotoShop Transfer": PSTransfer,
     "Image Judgment": ImageJudgment,
-    "ImageMinusMask": imageMinusMask
+    "ImageMinusMask": imageMinusMask,
+    "Load Random Images": LoadarandomImagefromdir,
 }
 
 # A dictionary that contains the friendly/humanly readable titles for the nodes
 NODE_DISPLAY_NAME_MAPPINGS = {
     "Yuan": "Yuan fake Node",
-    "YuanBW": "Yuan Black and White Converter",
-    "Yuan Transfer": "Yuan Transfer",
-    "Image Judgment": "ImageJudgment",
-    "ImageMinusMask": "Image Minus Mask"
+    "Black and white": "Yuan Black and White Converter",
+    "PhotoShop Transfer": "PS Transfer",
+    "Image Judgment": "Image Judgment",
+    "ImageMinusMask": "Image Minus Mask",
+    "Load Random Images": "Load Random Images",
     # 冒号后是节点上显示的名字,多行对应多个节点
 }
