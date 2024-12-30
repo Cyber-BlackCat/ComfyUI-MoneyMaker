@@ -17,7 +17,7 @@ NODE_CLASS_MAPPINGS = {
 
 # A dictionary that contains the friendly/humanly readable titles for the nodes
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "Yuan": "Yuan fake Node",
+    # "Yuan": "Yuan fake Node",
     "Black and white": "Black & White Converter",
     "Light or Dark": "Light or Dark",
     "PhotoShop Transfer": "PS Transfer",
