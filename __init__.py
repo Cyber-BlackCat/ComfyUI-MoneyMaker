@@ -1,16 +1,16 @@
 from .function.LightorDark import lightdarkjudgment
-from .yuan.Yuan import ImageJudgment, YuanBW, YuanTransfer, imageMinusMask
+from .yuan.Yuan import ImageJudgment, imageMinusMask, blackandwhite, PSTransfer, LoadarandomImagefromdir
 
 
 # A dictionary that contains all nodes you want to export with their names
 # NOTE: names should be globally unique
 NODE_CLASS_MAPPINGS = {
     # "Yuan": Yuan_node,
-    "YuanBW": YuanBW,
-    "Light or Dark": lightdarkjudgment,
-    "Yuan Transfer": YuanTransfer,
+    "Black and white": blackandwhite,
+    "PhotoShop Transfer": PSTransfer,
     "Image Judgment": ImageJudgment,
-    "ImageMinusMask": imageMinusMask
+    "ImageMinusMask": imageMinusMask,
+    "Load Random Images": LoadarandomImagefromdir,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
