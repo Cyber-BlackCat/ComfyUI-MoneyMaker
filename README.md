@@ -13,7 +13,7 @@ add a node which allows load random image(s) form Local directory.
 NODES INSTRUCTION
 
 black and white: a Gray level map generator, generating greyscale image.
-Yuan transfer: Transfer like photoshot, such as 'hard light, multiply' and so on...You can use this node to preserve artwork details such as text.
+photoshop transfer: Transfer like photoshot, such as 'hard light, multiply' and so on...You can use this node to preserve artwork details such as text.
 Image Minus Mask: using original image and mask generates the segmented image. You can choose the color type of the fill area. As example shows:
 ![Yuan nodes](https://github.com/user-attachments/assets/873565b0-5c3c-4e2a-96c7-ea03aa85f288)
 
