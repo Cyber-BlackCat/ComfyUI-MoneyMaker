@@ -1,4 +1,5 @@
 from .function.LightorDark import lightdarkjudgment
+from .function.mask_morphology import MaskPreprocessMorphology
 from .yuan.Yuan import ImageJudgment, imageMinusMask, blackandwhite, PSTransfer, LoadarandomImagefromdir
 
 
@@ -13,6 +14,7 @@ NODE_CLASS_MAPPINGS = {
     "Image Judgment": ImageJudgment,
     "ImageMinusMask": imageMinusMask,
     "Load Random Images": LoadarandomImagefromdir,
+    "Mask Preprocess Morphology": MaskPreprocessMorphology,
 }
 
 # A dictionary that contains the friendly/humanly readable titles for the nodes
@@ -24,7 +26,8 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "Image Judgment": "Image Judgment",
     "ImageMinusMask": "Image Minus Mask",
     "Load Random Images": "Load Random Images",
+    "Mask Preprocess Morphology": "Mask Preprocess Morphology",
     # key is same as the CLASS MAPPINGS, and the value is displayed to the user which is in right of the ":".
-    # 冒号后是节点上显示的名字，即此字典中的‘值’,多行对应多个节点，由jian
+    # 冒号后是节点上显示的名字，即此字典中的‘值’,多行对应多个节点。
 }
 
