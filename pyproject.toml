@@ -6,10 +6,10 @@ license = {file = "LICENSE"}
 dependencies = ["opencv-python"]
 
 [project.urls]
-Repository = "https://github.com/Cyber-Blacat/ComfyUI-Yuan"
+Repository = "https://github.com/Cyber-BlackCat/ComfyUI-Yuan"
 #  Used by Comfy Registry https://comfyregistry.org
 
 [tool.comfy]
-PublisherId = "Cyber-BlackCat"
-DisplayName = "Cyber-BlackCat"
+PublisherId = "cyber-blackcat"
+DisplayName = "ComfyUI-Yuan"
 Icon = ""
