@@ -11,5 +11,5 @@ Repository = "https://github.com/Cyber-Blacat/ComfyUI-Yuan"
 
 [tool.comfy]
 PublisherId = "Cyber-BlackCat"
-DisplayName = "ComfyUI-Yuan"
+DisplayName = "Cyber-BlackCat"
 Icon = ""
