@@ -22,4 +22,4 @@ you can download the default workflow from 'examples' or from this url:
 https://github.com/Cyber-Blacat/ComfyUI-Yuan/blob/main/examples/Yuan%20example%20workflow.json
 
 
-by Cyber_BCat
+by Cyber_BlackCat
