@@ -1,15 +1,15 @@
 [project]
-name = "comfyui-yuan"
+name = "comfyui-moneymaker"
 description = "Some useful ComfyUI image processing nodes which help you make some Real Money!"
 version = "1.0.1"
 license = {file = "LICENSE"}
 dependencies = ["opencv-python"]
 
 [project.urls]
-Repository = "https://github.com/Cyber-BlackCat/ComfyUI-Yuan"
+Repository = "https://github.com/Cyber-BlackCat/ComfyUI-MoneyMaker"
 #  Used by Comfy Registry https://comfyregistry.org
 
 [tool.comfy]
-PublisherId = "cyber-bcat"
+PublisherId = "cyber-blackcat"
 DisplayName = "Cyber-BlackCat"
 Icon = ""
