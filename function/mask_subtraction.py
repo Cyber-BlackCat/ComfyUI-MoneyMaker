@@ -33,7 +33,7 @@ class imageMinusMask:
 
     OUTPUT_NODE = True
 
-    CATEGORY = "Yuan😺"
+    CATEGORY = "MoneyMaker😺"
 
     def apply_mask_exact(self,original_image, target_image, mask_image):
 
