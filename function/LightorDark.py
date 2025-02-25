@@ -29,7 +29,7 @@ class lightdarkjudgment:
     RETURN_TYPES = ("IMAGE", "FLOAT", "FLOAT", "FLOAT", "FLOAT")
     RETURN_NAMES = ("IMAGE", "brightness", "contrast", "saturation", "color diff",)
     FUNCTION = "lightordarkimage"
-    CATEGORY = "Yuan😺"
+    CATEGORY = "MoneyMaker😺"
 
 
 
