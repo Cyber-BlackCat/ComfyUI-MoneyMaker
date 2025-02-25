@@ -1,7 +1,7 @@
 [project]
 name = "comfyui-moneymaker"
-description = "Some useful ComfyUI image processing nodes which help you make some Real Money!"
-version = "1.1.0"
+description = "Some useful image&text processing nodes which help you make some Real Money!"
+version = "1.0.2"
 license = {file = "LICENSE"}
 dependencies = ["opencv-python"]
 
