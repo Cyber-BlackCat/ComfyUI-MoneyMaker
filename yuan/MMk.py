@@ -578,7 +578,7 @@ class Number_Decimal:
     @classmethod
     def INPUT_TYPES(cls):
         return {"required": 
-                    {"number": ("FLOAT", ),
+                    {"number": ("FLOAT", {"default": 1.0, "step": 0.1}),
                     }
                 }
 
@@ -587,8 +587,8 @@ class Number_Decimal:
     CATEGORY = "MoneyMaker😺"
     FUNCTION = "execute"
 
-    def execute(self, float=True):
-        return (float,)
+    def execute(self, number):
+        return (number,)
 
 
 
