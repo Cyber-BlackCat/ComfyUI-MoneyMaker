@@ -110,7 +110,7 @@ class Yuan_node:
 
     #OUTPUT_NODE = False
 
-    CATEGORY = "Yuan😺"
+    CATEGORY = "MoneyMaker😺"
     # 归类目录名，即右键目录
 
     def test(self, image, string_field, int_field, float_field, print_to_screen):
@@ -161,7 +161,7 @@ class LoadarandomImagefromdir:
 
     FUNCTION = "load_random_image"
 
-    CATEGORY = "Yuan😺"
+    CATEGORY = "MoneyMaker😺"
 
     def load_random_image(self, folder, image_load_count, seed):
         if not os.path.isdir(folder):
@@ -233,7 +233,7 @@ class blackandwhite:
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "convert_to_bw"
-    CATEGORY = "Yuan😺"
+    CATEGORY = "MoneyMaker😺"
 
     def convert_to_bw(self, image):
         # 确保图像是Tensor
@@ -302,7 +302,7 @@ class PSTransfer:
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "process"
-    CATEGORY = "Yuan😺"
+    CATEGORY = "MoneyMaker😺"
 
     def adjust_mask(self, mask, target_tensor):
         # Add a channel dimension and repeat to match the channel number of the target tensor
@@ -382,7 +382,7 @@ class ImageJudgment:
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "judge_images"
-    CATEGORY = "Yuan😺"
+    CATEGORY = "MoneyMaker😺"
 
     def calculate_color_difference_in_diff_area(self, img1, img2):
         """
@@ -489,7 +489,7 @@ class imageMinusMask:
 
     OUTPUT_NODE = True
 
-    CATEGORY = "Yuan😺"
+    CATEGORY = "MoneyMaker😺"
 
     
     def imageMinusMask(self,image,mask,background_type):
@@ -572,6 +572,24 @@ class imageMinusMask:
         
        
         return image_rgb,
+class Number_Decimal:
+    def __init__(self):
+        pass
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "number": FLOAT,
+            }
+        }
+    CATEGORY = CATEGORY.MAIN.value + CATEGORY.PRIMITIVE.value
+    RETURN_TYPES = ("FLOAT",)
+    RETURN_NAMES = ("float",)
+    CATEGORY = "MoneyMaker😺"
+    FUNCTION = "execute"
+
+    def execute(self, float=True):
+        return (float,)
 
 
 
