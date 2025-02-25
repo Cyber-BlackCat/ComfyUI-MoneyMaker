@@ -56,7 +56,7 @@ class MaskPreprocessMorphology:
     RETURN_TYPES = ("MASK",)
     FUNCTION = "morphology"
 
-    CATEGORY = "Yuan😺"
+    CATEGORY = "MoneyMaker😺"
 
     def morphology(self, mask, distance, op):
         # image = tensor2mask(image)   # dont need 4 channel mask anymore
