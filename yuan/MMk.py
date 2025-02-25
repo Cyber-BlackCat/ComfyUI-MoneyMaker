@@ -582,7 +582,7 @@ class Number_Decimal:
                 "number": FLOAT,
             }
         }
-    CATEGORY = CATEGORY.MAIN.value + CATEGORY.PRIMITIVE.value
+
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("float",)
     CATEGORY = "MoneyMaker😺"
