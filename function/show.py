@@ -1,5 +1,7 @@
 import json
+from .utility import AlwaysEqualProxy
 
+any_type = AlwaysEqualProxy("*")
 class ShowSomething:
     @classmethod
     def INPUT_TYPES(cls):
