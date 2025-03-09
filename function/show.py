@@ -1,27 +1,17 @@
-from typing import Iterator, List, Tuple, Dict, Any, Union, Optional
-from _decimal import Context, getcontext
-from decimal import Decimal
-from nodes import PreviewImage, SaveImage, NODE_CLASS_MAPPINGS as ALL_NODE_CLASS_MAPPINGS
-from PIL import Image, ImageDraw, ImageFilter, ImageOps
-from PIL.PngImagePlugin import PngInfo
-
+# from nodes import PreviewImage, SaveImage, NODE_CLASS_MAPPINGS as ALL_NODE_CLASS_MAPPINGS
+# import comfy.utils
+# import folder_paths
 import numpy as np
-import time
-import os
-import re
-import csv
 import json
+# import pprint
 import torch
-import comfy.utils
-import folder_paths
 
-from .utility import AlwaysEqualProxy, ByPassTypeTuple, TautologyStr
-# 导入comfyui默认节点中的内容
-from nodes import PreviewImage, SaveImage, NODE_CLASS_MAPPINGS as ALL_NODE_CLASS_MAPPINGS
+from .utility import AlwaysEqualProxy
+
 
 all_type = AlwaysEqualProxy("*")
 
-class ShowSomething:
+class SomethingShow:
     def __init__(self):
         pass
     
@@ -34,11 +24,11 @@ class ShowSomething:
                            }}
 
     RETURN_TYPES = (all_type,)
-    RETURN_NAMES = ('sth',)
+    RETURN_NAMES = ('output',)
     INPUT_IS_LIST = True
 
     OUTPUT_NODE = True
-
+    IS_OUTPUT = True
     FUNCTION = "someinput"
     CATEGORY = "MoneyMaker😺/show"
 
@@ -79,13 +69,16 @@ class ShowSomething:
                 print("Node not found")
 
         if isinstance(values, list) and len(values) == 1:
+            # values = ",".join([str(x) for x in values]) #转为字符串
             print(f"values: {values}")
             return { "ui": {"text": values}, "result": (values[0],), }
         else:
+            # values = ",".join([str(x) for x in values]) #转为字符串
             print(f"values: {values}")
             return { "ui": {"text": values}, "result": (values,), }
+        # {"images": [image_tensor]}
 
-class ShowTensor:
+class TensorShow:
     def __init__(self):
         pass
 
@@ -101,28 +94,41 @@ class ShowTensor:
     RETURN_NAMES = ('tensor',)
 
     OUTPUT_NODE = True
-
+    IS_OUTPUT = True
     FUNCTION = "showtensor"
     CATEGORY = "MoneyMaker😺/show"
 
     def showtensor(self, tensor, unique_id=None, extra_pnginfo=None, **kwargs):
         shapes = []
-
+        
         def tensorShape(tensor):
             if isinstance(tensor, dict):
-                for k in tensor:
-                    tensorShape(tensor[k])
+                for key in tensor:
+                    tensorShape(tensor[key])
             elif isinstance(tensor, list):
                 for i in range(len(tensor)):
                     tensorShape(tensor[i])
             elif hasattr(tensor, 'shape'):
                 shapes.append(list(tensor.shape))
 
-        print(f"Tensor before shape extraction: {tensor}")
+        
+        print(f"Tensor values: {tensor}")  # 修正打印语句
+        # check tensor attribute&data type
         if hasattr(tensor, 'shape') or isinstance(tensor, (list, dict)):
             tensorShape(tensor)
-            print(f"Extracted shapes: {shapes}")
-            return { "ui": {"text": shapes}}
+
+            # # 格式化
+            # 将张量转换为列表
+            # tensor_str = str(tensor)
+            tensor_lsstr = [str(tensor)]
+            # # shapes已经是一个列表了
+            combined_list=["Tensor shape:"]+shapes+["\n"]+tensor_lsstr
+            # combined_text = shapes+tensor_str
+            # combined_text = pprint.pformat(combined_text)
+            # print(f'Tensor shape: {shapes}\n\nTensor: {tensor_str}')
+            print(f'Tensor shape: {shapes}')
+            return { "ui": {"text": combined_list}}
         else:
-            print("Input is not a tensor or does not have a shape attribute.")
-            return { "ui": {"text": "Input is not a tensor or does not have a shape attribute."}}
+            error_msg = f"Not a tensor or not have a shape attribute. Original input is: {tensor}"
+            print(error_msg)
+            return { "ui": {"text": [error_msg]}}
