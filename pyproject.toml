@@ -11,5 +11,5 @@ Repository = "https://github.com/Cyber-BlackCat/ComfyUI-MoneyMaker"
 
 [tool.comfy]
 PublisherId = "cyber-bcat"
-DisplayName = "Cyber-BlackCat"
+DisplayName = "ComfyUI-MoneyMaker"
 Icon = "🐱"
