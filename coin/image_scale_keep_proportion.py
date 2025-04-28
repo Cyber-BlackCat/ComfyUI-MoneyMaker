@@ -24,8 +24,8 @@ class ImageResizeKeepProportion:
             }
         }
 
-    RETURN_TYPES = ("IMAGE","INT", "INT",)
-    RETURN_NAMES = ("image","Width","Height")
+    RETURN_TYPES = ("IMAGE", "INT", "INT",)
+    RETURN_NAMES = ("image", "Width", "Height")
     FUNCTION = "resize"
     CATEGORY = "MoneyMaker😺/image"
 
@@ -39,12 +39,12 @@ class ImageResizeKeepProportion:
         :param method: 缩放方法，可选值为nearest-exact、bilinear、area、bicubic、lanczos
         :return: 缩放后的图像
         """
-        # 获取图像的形状
+        # 获取图像的形状BHWC
         batch_size, height, width, channels = image.shape
         
         # 如果图像宽度和高度均小于等于最大值，则无需缩放
         if width <= max_width and height <= max_height:
-            return (image,)
+            return (image, width, height)
         
         # 计算等比例缩放因子
         width_ratio = max_width / width
@@ -68,4 +68,4 @@ class ImageResizeKeepProportion:
         # 将通道维度移回原位置
         resized_image = resized_image.movedim(1, -1)
         
-        return (resized_image,resized_image.shape[2], resized_image.shape[1],)
+        return (resized_image, new_width, new_height,)
