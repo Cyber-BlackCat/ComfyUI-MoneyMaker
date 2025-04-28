@@ -2,6 +2,7 @@ from .function.LightorDark import lightdarkjudgment
 from .function.mask_morphology import MaskPreprocessMorphology
 from .function.show import SomethingShow, TensorShow
 from .coin.MMk import ImageJudgment, imageMinusMask, blackandwhite, PSTransfer, LoadarandomImagefromdir, Number_Decimal
+from .coin.image_scale_keep_proportion import ImageResizeKeepProportion
 
 
 # A dictionary that contains all nodes you want to export with their names
@@ -18,7 +19,8 @@ NODE_CLASS_MAPPINGS = {
     "Mask Preprocess Morphology": MaskPreprocessMorphology,
     "Number": Number_Decimal,
     "SomethingShow": SomethingShow,
-    "TensorShow": TensorShow
+    "TensorShow": TensorShow,
+    "Image Resize MM": ImageResizeKeepProportion,
 
     # key is in the left of ":", and the value is the function name in the right of the ":".键左，冒号后为函数名即'值' 
 }
@@ -35,7 +37,8 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "Mask Preprocess Morphology": "Mask Preprocess Morphology",
     "Number": "Number",
     "SomethingShow": "Something Show",
-    "TensorShow": "Tensor Show"
+    "TensorShow": "Tensor Show",
+    "Image Resize MM": "Image Resize (keep proportion)",
 
     # key is same as the CLASS MAPPINGS, and the value is displayed to the user which is in right of the ":".
     # 冒号后是节点上显示的名字，即此字典中的‘值’,多行对应多个节点。
