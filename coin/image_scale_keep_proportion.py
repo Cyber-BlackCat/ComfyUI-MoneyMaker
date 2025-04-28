@@ -24,8 +24,8 @@ class ImageResizeKeepProportion:
             }
         }
 
-    RETURN_TYPES = ("IMAGE",)
-    RETURN_NAMES = ("IMAGE","Width","Height")
+    RETURN_TYPES = ("IMAGE","INT", "INT",)
+    RETURN_NAMES = ("image","Width","Height")
     FUNCTION = "resize"
     CATEGORY = "MoneyMaker😺/image"
 
