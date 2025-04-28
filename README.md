@@ -1,15 +1,15 @@
 Some practical ComfyUI image/mask process nodes make you earn some real money! (Yuan means chinese currency).
 
 
-UPDATE
-v1.2.0
-image limitation node is added, can be serched by "Image Resize MM" or "Image Resize (keep proportion)".
-PS transfor: details can be combined by traditional CV method like Photoshop.
-v1.0.1
+#UPDATE
+##v1.2.0
+image limitation node is added, can be serched by "Image Resize MM" or "Image Resize (keep proportion)".     
+PS transfor: details can be combined by traditional CV method like Photoshop.     
+##v1.0.1  
 add a mask preprocess node by morpholog：Mask Preprocess Morphology,
 Fixed the issue with the processing of masks in this project (https://github.com/BadCafeCode/masquerade-nodes-comfyui), which would have caused the mask to be output in image format and not be used directly in subsequent generation processes
 
-v1.0.0
+##v1.0.0
 add a node which allows load random image(s) form Local directory.
 
 NODES INSTRUCTION
