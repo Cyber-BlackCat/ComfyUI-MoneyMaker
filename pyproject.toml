@@ -1,7 +1,7 @@
 [project]
 name = "comfyui-moneymaker"
 description = "something show& tensor show nodes. Image processing nodes: ps transfer, greyscale.... Use these nodes to make some Real Money!"
-version = "1.2.2"
+version = "1.2.3"
 license = {file = "LICENSE"}
 dependencies = ["opencv-python"]
 
