@@ -1,5 +1,6 @@
 from .function.LightorDark import lightdarkjudgment
 from .function.mask_morphology import MaskPreprocessMorphology
+from .function.mask_to_gray import MaskToGray
 from .function.show import SomethingShow, TensorShow
 from .coin.MMk import ImageJudgment, imageMinusMask, blackandwhite, PSTransfer, LoadarandomImagefromdir, Number_Decimal
 from .coin.image_scale_keep_proportion import ImageResizeKeepProportion
@@ -17,6 +18,7 @@ NODE_CLASS_MAPPINGS = {
     "ImageMinusMask": imageMinusMask,
     "Load Random Images": LoadarandomImagefromdir,
     "Mask Preprocess Morphology": MaskPreprocessMorphology,
+    "Mask To Gray": MaskToGray,
     "Number": Number_Decimal,
     "SomethingShow": SomethingShow,
     "TensorShow": TensorShow,
@@ -35,13 +37,14 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "ImageMinusMask": "Image Minus Mask",
     "Load Random Images": "Load Random Images",
     "Mask Preprocess Morphology": "Mask Preprocess Morphology",
+    "Mask To Gray": "Mask To Gray",
     "Number": "Number",
     "SomethingShow": "Something Show",
     "TensorShow": "Tensor Show",
     "Image Resize MM": "Image Resize (keep proportion)",
 
     # key is same as the CLASS MAPPINGS, and the value is displayed to the user which is in right of the ":".
-    # 冒号后是节点上显示的名字，即此字典中的‘值’,多行对应多个节点。
+    # 冒号后是节点上显示的名字，即此字典中的'值',多行对应多个节点。
 }
 
 # ========== 版本和前端配置 ==========
